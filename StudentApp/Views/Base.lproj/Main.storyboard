@@ -58,7 +58,6 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ve8-8f-OcR"/>
-                                            <segue destination="ceD-Fu-483" kind="modal" identifier="main" modalPresentationStyle="fullScreen" id="jU7-Ez-fdH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,28 +84,41 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7On-tr-cnJ">
-                                <rect key="frame" x="112.5" y="30" width="150" height="150"/>
+                                <rect key="frame" x="122.5" y="20" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="U4Y-O8-7tg"/>
-                                    <constraint firstAttribute="height" constant="150" id="brW-xO-WZt"/>
+                                    <constraint firstAttribute="width" constant="130" id="U4Y-O8-7tg"/>
+                                    <constraint firstAttribute="height" constant="130" id="brW-xO-WZt"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bQZ-1Q-uUy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Tbc-G3-DZg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1yT-c1-JwV"/>
-                            <constraint firstItem="7On-tr-cnJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="20m-eW-xGJ"/>
+                            <constraint firstItem="7On-tr-cnJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="20m-eW-xGJ"/>
                             <constraint firstItem="FpI-AV-rF4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Bj-Lf-4jZ"/>
                             <constraint firstItem="Tbc-G3-DZg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="MXT-oc-3EK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FpI-AV-rF4" secondAttribute="bottom" constant="24" id="PIv-KI-0mB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tbc-G3-DZg" secondAttribute="trailing" constant="20" id="QgN-T6-REb"/>
+                            <constraint firstItem="bQZ-1Q-uUy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bFv-qA-yUm"/>
+                            <constraint firstItem="bQZ-1Q-uUy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hCg-hI-NAk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bQZ-1Q-uUy" secondAttribute="trailing" id="l0C-rL-dMG"/>
                             <constraint firstItem="7On-tr-cnJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vzj-YF-xlC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bQZ-1Q-uUy" secondAttribute="bottom" id="xOt-eM-Z3E"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Авторизация" id="8iy-B9-ihz"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="bQZ-1Q-uUy" id="kv0-lE-sXK"/>
                         <outlet property="loginButton" destination="Mul-AJ-D6F" id="AlS-kC-ZiU"/>
+                        <outlet property="loginTextField" destination="pOt-It-m5R" id="2gf-xa-Wch"/>
+                        <outlet property="passwordTextField" destination="qtH-nk-0Pu" id="JH9-wg-H4Q"/>
+                        <segue destination="ceD-Fu-483" kind="modal" identifier="main" modalPresentationStyle="fullScreen" id="VlT-vz-PJP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -189,6 +201,9 @@
         <image name="text.badge.plus" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

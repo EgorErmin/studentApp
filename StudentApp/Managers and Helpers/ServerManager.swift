@@ -10,11 +10,12 @@ import Alamofire
 
 class ServerManager {
     
-    typealias handler = (Bool, Int?, Any?) -> ()
+    typealias handler = (Bool, Int, Data?) -> ()
     
     private enum URN: String {
-        case authorization
+        case authorization = "/student/login"
         case profileInfo
+        case visit
     }
     
     private enum RequestType {
@@ -24,22 +25,26 @@ class ServerManager {
         case delete
     }
     
-    private let baseUrl = "https://localhost"
+    private let baseUrl = "http://127.0.0.1:8000"
     
     // MARK: - Singleton
     static let shared: ServerManager = { return ServerManager() }()
     
     private init() { }
     
-    private func request(type: RequestType, urn: URN, completionHandler: @escaping handler) {
+    private func request(type: RequestType,
+                         urn: URN,
+                         parameters: [String : Any]? = [:],
+                         completionHandler: @escaping handler) {
+        
         let fullUri = baseUrl + urn.rawValue
         var request: DataRequest? = nil
         
         switch type {
         case .get:
-            request = AF.request(fullUri, method: .get)
+            request = AF.request(fullUri, method: .get, parameters: parameters)
         case .post:
-            request = AF.request(fullUri, method: .post)
+            request = AF.request(fullUri, method: .post, parameters: parameters)
         default:
             return
         }
@@ -55,9 +60,13 @@ class ServerManager {
     }
     
     // MARK: - Methods
-    func authorization(responseHandler: @escaping handler) {
+    func authorization(login: String, password: String, responseHandler: @escaping handler) {
         request(type: .get,
                 urn: .authorization,
+                parameters: [
+                    "login": login,
+                    "password": password
+                ],
                 completionHandler: responseHandler)
     }
     
@@ -67,24 +76,34 @@ class ServerManager {
                 completionHandler: responseHandler)
     }
     
-    func editProfile(responseHandler: @escaping handler) {
-        
-    }
+//    func editProfile(responseHandler: @escaping handler) {
+//        request(type: .post,
+//                urn: <#T##URN#>,
+//                completionHandler: responseHandler)
+//    }
+//
+//    func fetchSchedule(responseHandler: @escaping handler) {
+//        request(type: .get,
+//                urn: <#T##URN#>,
+//                completionHandler: responseHandler)
+//    }
+//
+//    func fetchTasks(responseHandler: @escaping handler) {
+//        request(type: .get,
+//                urn: <#T##URN#>,
+//                completionHandler: responseHandler)
+//    }
+//
+//    func sendTask(responseHandler: @escaping handler) {
+//        request(type: .post,
+//                urn: <#T##URN#>,
+//                completionHandler: responseHandler)
+//    }
     
-    func fetchSchedule(responseHandler: @escaping handler) {
-        
-    }
-    
-    func fetchTasks(responseHandler: @escaping handler) {
-        
-    }
-    
-    func sendTask(responseHandler: @escaping handler) {
-        
-    }
-    
-    func visitApp() {
-        
+    func visitApp(responseHandler: @escaping handler) {
+        request(type: .post,
+                urn: .visit,
+                completionHandler: responseHandler)
     }
     
 }

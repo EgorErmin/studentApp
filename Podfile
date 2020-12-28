@@ -5,8 +5,9 @@ target 'StudentApp' do
   use_frameworks!
 
   # Pods for StudentApp
-  pod 'Alamofire', '~> 5.2'
+  pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'KeychainAccess'
   
   target 'StudentAppTests' do
     inherit! :search_paths
