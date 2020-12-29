@@ -17,15 +17,60 @@ class ProfileViewController: UIViewController {
     @IBOutlet private weak var facultyLabel: UILabel!
     @IBOutlet private weak var groupLabel: UILabel!
     @IBOutlet private weak var educationProgramLabel: UILabel!
-    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+            avatarImageView.clipsToBounds = true
+            avatarImageView.layer.borderWidth = 1
+            avatarImageView.layer.borderColor = UIColor.blue.cgColor
+        }
+    }
+    @IBOutlet weak var infoView: UIView! {
+        didSet {
+            infoView.layer.cornerRadius = 8
+            infoView.layer.borderWidth = 1
+            infoView.layer.borderColor = UIColor.blue.cgColor
+        }
+    }
+    @IBOutlet weak var stackView: UIStackView! {
+        didSet {
+            stackView.layer.cornerRadius = 8
+            stackView.layer.borderWidth = 1
+            stackView.layer.borderColor = UIColor.black.cgColor
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchProfileInfo()
     }
     
-    // MARK: - Business logic
+    // MARK: - Business logic and Network
+    private func fetchProfileInfo() {
+        
+        ServerManager.shared.fetchProfile(responseHandler: { [weak self] (isSuccess, statusCode, data) in
+            
+            guard isSuccess,
+                  let data = data else { return }
+            
+            guard let profile = try? JSONDecoder().decode(Profile.self, from: data) else { return }
+            
+            self?.setupProfileInfo(profile: profile)
+        })
+        
+    }
     
+    private func setupProfileInfo(profile: Profile) {
+        DispatchQueue.main.async {
+            self.fullNameLabel.text = profile.firstName + " " + profile.lastName + " " + profile.patronymic
+            self.birthdayLabel.text = profile.dateOfBirth
+            self.groupLabel.text = profile.groupName
+            self.departmentLabel.text = profile.departmentName
+            self.facultyLabel.text = profile.facultyName
+            self.educationProgramLabel.text = profile.educationProgramName
+        }
+    }
     
     // MARK: - Actions
     @IBAction private func edit(_ sender: Any) {

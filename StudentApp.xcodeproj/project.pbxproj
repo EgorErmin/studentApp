@@ -16,6 +16,7 @@
 		58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DD3259A4F1C0060A4B4 /* Profile.swift */; };
 		58508DDC259A78110060A4B4 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DDB259A78110060A4B4 /* AccountManager.swift */; };
 		58508DEA259A7B670060A4B4 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DE9259A7B670060A4B4 /* Token.swift */; };
+		58716A53259B034B009D8F6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A52259B034B009D8F6D /* Extensions.swift */; };
 		58EF07492596741C00057702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EF07482596741C00057702 /* AppDelegate.swift */; };
 		58EF074D2596741C00057702 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EF074C2596741C00057702 /* AuthorizationViewController.swift */; };
 		58EF07502596741C00057702 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EF074E2596741C00057702 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		58508DD3259A4F1C0060A4B4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		58508DDB259A78110060A4B4 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		58508DE9259A7B670060A4B4 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		58716A52259B034B009D8F6D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		58EF07452596741C00057702 /* StudentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EF07482596741C00057702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58EF074C2596741C00057702 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				580410E72596A658008F839F /* ServerManager.swift */,
 				58508DDB259A78110060A4B4 /* AccountManager.swift */,
+				58716A52259B034B009D8F6D /* Extensions.swift */,
 			);
 			path = "Managers and Helpers";
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				58EF074D2596741C00057702 /* AuthorizationViewController.swift in Sources */,
 				580410DA25969E16008F839F /* TasksViewController.swift in Sources */,
 				58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */,
+				58716A53259B034B009D8F6D /* Extensions.swift in Sources */,
 				58EF07492596741C00057702 /* AppDelegate.swift in Sources */,
 				580410E82596A658008F839F /* ServerManager.swift in Sources */,
 				580410D525969AB6008F839F /* ScheduleViewController.swift in Sources */,

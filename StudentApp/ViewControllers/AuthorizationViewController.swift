@@ -44,7 +44,8 @@ class AuthorizationViewController: UIViewController {
             
             guard isSuccess,
                   let data = data else {
-                self?.showAlert(code: statusCode)
+                let message = "К сожалению вы не смогли авторизоваться, повторите попытку позже или введите другие данные"
+                self?.showErrorResponse(code: ErrorResponse(code: statusCode), message: message)
                 return
             }
             
@@ -55,16 +56,6 @@ class AuthorizationViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.performSegue(withIdentifier: "main", sender: nil)
             }
-        })
-    }
-    
-    private func showAlert(code: Int) {
-        let message = "Авторизация не удалась"
-        let alert = UIAlertController(title: "\(code)", message: message, preferredStyle: .alert)
-        present(alert, animated: true, completion: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
-                self.dismiss(animated: true, completion: nil)
-            })
         })
     }
     

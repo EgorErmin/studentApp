@@ -11,10 +11,10 @@ struct Profile: Codable {
     let firstName: String
     let lastName: String
     let patronymic: String
-    let birthday: String
-    let department: String
-    let faculty: String
-    let group: String
-    let educationProgram: String
-    let avatar: String?
+    let dateOfBirth: String
+    let departmentName: String
+    let facultyName: String
+    let groupName: String
+    let educationProgramName: String
+    //let avatar: String?
 }

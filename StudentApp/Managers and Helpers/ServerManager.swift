@@ -14,7 +14,7 @@ class ServerManager {
     
     private enum URN: String {
         case authorization = "/student/login"
-        case profileInfo
+        case profileInfo = "/student/get_profile"
         case visit
     }
     
@@ -25,7 +25,7 @@ class ServerManager {
         case delete
     }
     
-    private let baseUrl = "http://127.0.0.1:8000"
+    private let baseUrl = "http://127.0.0.1:3000"
     
     // MARK: - Singleton
     static let shared: ServerManager = { return ServerManager() }()
@@ -52,16 +52,21 @@ class ServerManager {
         if let request = request {
             request.responseData(completionHandler: { response in
                 guard let statusCode = response.response?.statusCode,
-                      let data = response.data else { return }
+                      let data = response.data else {
+                    completionHandler(false, 0, nil)
+                    return
+                }
                 let isSuccess = ([200, 204, 304] as Set<Int>).contains(statusCode)
                 completionHandler(isSuccess, statusCode, data)
             })
+        } else {
+            completionHandler(false, 404, nil)
         }
     }
     
     // MARK: - Methods
     func authorization(login: String, password: String, responseHandler: @escaping handler) {
-        request(type: .get,
+        request(type: .post,
                 urn: .authorization,
                 parameters: [
                     "login": login,
@@ -71,8 +76,12 @@ class ServerManager {
     }
     
     func fetchProfile(responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
         request(type: .get,
                 urn: .profileInfo,
+                parameters: [
+                    "secret_token": token
+                ],
                 completionHandler: responseHandler)
     }
     
