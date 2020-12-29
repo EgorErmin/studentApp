@@ -15,6 +15,7 @@ class ServerManager {
     private enum URN: String {
         case authorization = "/student/login"
         case profileInfo = "/student/get_profile"
+        case schedules = "/schedule/getmy"
         case visit
     }
     
@@ -24,8 +25,8 @@ class ServerManager {
         case update
         case delete
     }
-    
-    private let baseUrl = "http://127.0.0.1:3000"
+    //IPNumber
+    private let baseUrl = "http://192.168.1.81:3000"
     
     // MARK: - Singleton
     static let shared: ServerManager = { return ServerManager() }()
@@ -91,11 +92,15 @@ class ServerManager {
 //                completionHandler: responseHandler)
 //    }
 //
-//    func fetchSchedule(responseHandler: @escaping handler) {
-//        request(type: .get,
-//                urn: <#T##URN#>,
-//                completionHandler: responseHandler)
-//    }
+    func fetchSchedule(responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .get,
+                urn: .schedules,
+                parameters: [
+                    "secret_token": token
+                ],
+                completionHandler: responseHandler)
+    }
 //
 //    func fetchTasks(responseHandler: @escaping handler) {
 //        request(type: .get,

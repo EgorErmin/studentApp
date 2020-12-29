@@ -22,4 +22,8 @@ class AccountManager {
         try? Keychain().set(token, key: "authorizationToken")
     }
     
+    func deleteAuthToken() {
+        try? Keychain().remove("authorizationToken")
+    }
+    
 }

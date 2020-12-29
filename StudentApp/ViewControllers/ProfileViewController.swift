@@ -32,11 +32,11 @@ class ProfileViewController: UIViewController {
             infoView.layer.borderColor = UIColor.blue.cgColor
         }
     }
-    @IBOutlet weak var stackView: UIStackView! {
+    @IBOutlet weak var buttonsView: UIView! {
         didSet {
-            stackView.layer.cornerRadius = 8
-            stackView.layer.borderWidth = 1
-            stackView.layer.borderColor = UIColor.black.cgColor
+            buttonsView.layer.cornerRadius = 8
+            buttonsView.layer.borderWidth = 1
+            buttonsView.layer.borderColor = UIColor.black.cgColor
         }
     }
     
@@ -77,10 +77,11 @@ class ProfileViewController: UIViewController {
         
     }
     
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    @IBAction private func logout(_ sender: Any) {
+        AccountManager.shared.deleteAuthToken()
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
 }

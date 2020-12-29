@@ -25,6 +25,14 @@ class AuthorizationViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        DispatchQueue.main.async { [weak self] in
+            self?.loginTextField.text?.removeAll()
+            self?.passwordTextField.text?.removeAll()
+        }
+    }
+    
     // MARK: - Business logic and Network
     private func fetchAuthToken() {
         guard let login = loginTextField.text,
@@ -37,7 +45,7 @@ class AuthorizationViewController: UIViewController {
         }
         
         ServerManager.shared.authorization(login: login, password: password, responseHandler: { [weak self] (isSuccess, statusCode, data) in
-            
+                
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
             }
