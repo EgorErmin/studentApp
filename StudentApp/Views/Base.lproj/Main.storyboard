@@ -12,7 +12,7 @@
         <!--Авторизация-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AuthorizationViewController" customModule="StudentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="authVC" id="BYZ-38-t0r" customClass="AuthorizationViewController" customModule="StudentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,11 +112,6 @@
                             <constraint firstItem="7On-tr-cnJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vzj-YF-xlC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bQZ-1Q-uUy" secondAttribute="bottom" id="xOt-eM-Z3E"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bQZ-1Q-uUy"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Авторизация" id="8iy-B9-ihz"/>
                     <connections>
@@ -200,18 +195,28 @@
                                     <outlet property="delegate" destination="dFe-zh-NIv" id="G7t-jN-jFj"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BKk-GS-at9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g2x-s0-yd5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g2x-s0-yd5" firstAttribute="trailing" secondItem="Y23-jc-aJX" secondAttribute="trailing" id="4f6-qN-8s3"/>
+                            <constraint firstItem="BKk-GS-at9" firstAttribute="trailing" secondItem="g2x-s0-yd5" secondAttribute="trailing" id="4mZ-Ft-9QR"/>
                             <constraint firstItem="Y23-jc-aJX" firstAttribute="top" secondItem="g2x-s0-yd5" secondAttribute="top" id="DGj-mF-8fT"/>
                             <constraint firstItem="Y23-jc-aJX" firstAttribute="leading" secondItem="g2x-s0-yd5" secondAttribute="leading" id="HSf-4i-KTs"/>
+                            <constraint firstAttribute="bottom" secondItem="BKk-GS-at9" secondAttribute="bottom" id="dPb-fY-3mA"/>
+                            <constraint firstItem="BKk-GS-at9" firstAttribute="leading" secondItem="g2x-s0-yd5" secondAttribute="leading" id="f8Y-gO-5Cv"/>
                             <constraint firstItem="g2x-s0-yd5" firstAttribute="bottom" secondItem="Y23-jc-aJX" secondAttribute="bottom" id="nRx-tH-3LR"/>
+                            <constraint firstItem="BKk-GS-at9" firstAttribute="top" secondItem="g2x-s0-yd5" secondAttribute="top" id="xfS-y4-gW8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Расписание" image="list.dash" catalog="system" id="w0L-Up-zJ8"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="BKk-GS-at9" id="XCJ-eO-WVj"/>
                         <outlet property="scheduleTableView" destination="Y23-jc-aJX" id="l3g-xV-ijV"/>
                     </connections>
                 </viewController>
@@ -443,19 +448,36 @@
                                     <constraint firstItem="xZz-Qj-t6F" firstAttribute="width" secondItem="oqq-mY-o12" secondAttribute="width" id="h9P-cf-PzD"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k3q-Y8-YjM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cu6-dl-A5c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oqq-mY-o12" firstAttribute="leading" secondItem="cu6-dl-A5c" secondAttribute="leading" id="56H-j0-cCG"/>
+                            <constraint firstItem="k3q-Y8-YjM" firstAttribute="width" secondItem="oqq-mY-o12" secondAttribute="width" id="Ai1-LY-249"/>
                             <constraint firstItem="oqq-mY-o12" firstAttribute="top" secondItem="cu6-dl-A5c" secondAttribute="top" id="Ead-Ib-Qrj"/>
+                            <constraint firstItem="k3q-Y8-YjM" firstAttribute="top" secondItem="cu6-dl-A5c" secondAttribute="top" id="Z0H-EL-Xhc"/>
+                            <constraint firstItem="k3q-Y8-YjM" firstAttribute="height" secondItem="oqq-mY-o12" secondAttribute="height" priority="250" id="fdb-pd-GCi"/>
                             <constraint firstItem="cu6-dl-A5c" firstAttribute="trailing" secondItem="oqq-mY-o12" secondAttribute="trailing" id="gDW-WA-gXX"/>
+                            <constraint firstAttribute="bottom" secondItem="k3q-Y8-YjM" secondAttribute="bottom" id="nv2-B7-7ZV"/>
+                            <constraint firstItem="k3q-Y8-YjM" firstAttribute="leading" secondItem="cu6-dl-A5c" secondAttribute="leading" id="rZo-W5-vh9"/>
                             <constraint firstItem="cu6-dl-A5c" firstAttribute="bottom" secondItem="oqq-mY-o12" secondAttribute="bottom" id="wgj-qC-VYx"/>
+                            <constraint firstItem="k3q-Y8-YjM" firstAttribute="trailing" secondItem="cu6-dl-A5c" secondAttribute="trailing" id="xgT-vB-hsg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="k3q-Y8-YjM"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Профиль" image="person" catalog="system" id="qRh-n2-oEd"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="k3q-Y8-YjM" id="K32-cY-dHU"/>
                         <outlet property="avatarImageView" destination="pQw-Cl-2ae" id="GFq-Tt-S0d"/>
                         <outlet property="birthdayLabel" destination="4Pq-or-YVN" id="Nsu-Nc-Ao4"/>
                         <outlet property="buttonsView" destination="IVL-PV-hVF" id="sVV-Cg-MP3"/>

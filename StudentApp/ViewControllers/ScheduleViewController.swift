@@ -10,14 +10,15 @@ import UIKit
 class ScheduleViewController: UIViewController {
 
     @IBOutlet weak var scheduleTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var subjects: [[Subject]]? = nil
+    var subjects = [Day?]()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSchedule(completion: { [weak self] result in
-            self?.subjects = TransitionToArray().transform(data: result.data)
+            self?.subjects = result.data
             DispatchQueue.main.async {
                 self?.scheduleTableView.reloadData()
             }
@@ -27,7 +28,15 @@ class ScheduleViewController: UIViewController {
     // MARK: - Business logic and Network
     private func fetchSchedule(completion: ((Schedules) -> ())?) {
         
-        ServerManager.shared.fetchSchedule(responseHandler: { (isSuccess, statusCode, data) in
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+        
+        ServerManager.shared.fetchSchedule(responseHandler: { [weak self] (isSuccess, statusCode, data) in
+            
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+            }
             
             guard isSuccess,
                   let data = data else { return }
@@ -44,7 +53,7 @@ class ScheduleViewController: UIViewController {
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        subjects?.count ?? 0
+        subjects.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -60,13 +69,13 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        subjects?[section].count ?? 0
+        subjects[section]?.subjects.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subjectCell", for: indexPath) as! SubjectTableViewCell
-        guard let day = subjects?[indexPath.section] else { return cell }
-        let subject = day[indexPath.row]
+        guard let day = subjects[indexPath.section]?.subjects,
+              let subject = day[indexPath.row] else { return cell }
         cell.setup(subject: subject, number: indexPath.row + 1)
         return cell
     }

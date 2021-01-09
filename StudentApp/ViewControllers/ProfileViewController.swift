@@ -40,6 +40,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,15 @@ class ProfileViewController: UIViewController {
     // MARK: - Business logic and Network
     private func fetchProfileInfo() {
         
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+        
         ServerManager.shared.fetchProfile(responseHandler: { [weak self] (isSuccess, statusCode, data) in
+            
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+            }
             
             guard isSuccess,
                   let data = data else { return }
@@ -79,9 +89,15 @@ class ProfileViewController: UIViewController {
     
     @IBAction private func logout(_ sender: Any) {
         AccountManager.shared.deleteAuthToken()
-        DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: nil)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let window = appDelegate.window else {
+            return
         }
+        
+        let stb = UIStoryboard(name: "Main", bundle: nil)
+        let authVC = stb.instantiateViewController(withIdentifier: "authVC")
+        
+        window.rootViewController = authVC
     }
 
 }
