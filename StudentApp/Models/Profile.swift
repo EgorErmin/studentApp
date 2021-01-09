@@ -16,5 +16,5 @@ struct Profile: Codable {
     let facultyName: String
     let groupName: String
     let educationProgramName: String
-    //let avatar: String?
+    let photo: String?
 }

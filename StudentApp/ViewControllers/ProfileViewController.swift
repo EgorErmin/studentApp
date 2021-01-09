@@ -46,6 +46,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchProfileInfo()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(editAvatar(tapGestureRecognizer:)))
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: - Business logic and Network
@@ -80,6 +85,24 @@ class ProfileViewController: UIViewController {
             self.facultyLabel.text = profile.facultyName
             self.educationProgramLabel.text = profile.educationProgramName
         }
+        
+        if let avatarPath = profile.photo {
+            let avatarUrl = URL(string: avatarPath)
+            DispatchQueue.main.async {
+                self.avatarImageView.kf.setImage(with: avatarUrl)
+            }
+        }
+    }
+    
+    @objc private func editAvatar(tapGestureRecognizer: UITapGestureRecognizer) {
+        let imageVC = UIImagePickerController()
+        imageVC.sourceType = .photoLibrary
+        imageVC.allowsEditing = true
+        imageVC.delegate = self
+        
+        DispatchQueue.main.async {
+            self.present(imageVC, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Actions
@@ -100,4 +123,29 @@ class ProfileViewController: UIViewController {
         window.rootViewController = authVC
     }
 
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true, completion:  nil)
+        
+        guard let image = info[.editedImage] as? UIImage,
+              let data = image.jpegData(compressionQuality: 1) else { return }
+        
+        ServerManager.shared.editAvatar(data: data, responseHandler: { [weak self] (isSuccess, statusCode, data) in
+            
+            guard isSuccess,
+                  let data = data else { return }
+            
+            print(data)
+            
+        })
+        
+        DispatchQueue.main.async {
+            self.avatarImageView.image = image
+        }
+    }
+    
 }

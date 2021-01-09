@@ -16,11 +16,13 @@ class ServerManager {
         case authorization = "/student/login"
         case profileInfo = "/student/get_profile"
         case schedules = "/schedule/getmy"
+        case editAvatar = "/student/update_photo"
         case visit
     }
     
     private enum RequestType {
         case post
+        case postBody
         case get
         case update
         case delete
@@ -34,11 +36,11 @@ class ServerManager {
     private init() { }
     
     private func request(type: RequestType,
-                         urn: URN,
+                         urn: String,
                          parameters: [String : Any]? = [:],
                          completionHandler: @escaping handler) {
         
-        let fullUri = baseUrl + urn.rawValue
+        let fullUri = baseUrl + urn
         var request: DataRequest? = nil
         
         switch type {
@@ -46,6 +48,18 @@ class ServerManager {
             request = AF.request(fullUri, method: .get, parameters: parameters)
         case .post:
             request = AF.request(fullUri, method: .post, parameters: parameters)
+        case .postBody:
+            request = AF.upload(multipartFormData: { multipartFormData in
+                if var params = parameters {
+                    for (key, value) in params {
+                        if let dataValue = value as? Data {
+                            multipartFormData.append(dataValue, withName: key)
+                        }
+                        params.removeValue(forKey: key)
+                    }
+                }
+            }, to: fullUri)
+            //request = AF.request(fullUri, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         default:
             return
         }
@@ -68,7 +82,7 @@ class ServerManager {
     // MARK: - Methods
     func authorization(login: String, password: String, responseHandler: @escaping handler) {
         request(type: .post,
-                urn: .authorization,
+                urn: URN.authorization.rawValue,
                 parameters: [
                     "login": login,
                     "password": password
@@ -79,7 +93,7 @@ class ServerManager {
     func fetchProfile(responseHandler: @escaping handler) {
         guard let token = AccountManager.shared.authToken else { return }
         request(type: .get,
-                urn: .profileInfo,
+                urn: URN.profileInfo.rawValue,
                 parameters: [
                     "secret_token": token
                 ],
@@ -92,10 +106,23 @@ class ServerManager {
 //                completionHandler: responseHandler)
 //    }
 //
+    
+    // MARK: - TODO
+    func editAvatar(data: Data, responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .postBody,
+                urn: URN.editAvatar.rawValue + "?secret_token=\(token)",
+                parameters: [
+                    "photo_ext": ".jpeg",
+                    "file": data
+                ],
+                completionHandler: responseHandler)
+    }
+    
     func fetchSchedule(responseHandler: @escaping handler) {
         guard let token = AccountManager.shared.authToken else { return }
         request(type: .get,
-                urn: .schedules,
+                urn: URN.schedules.rawValue,
                 parameters: [
                     "secret_token": token
                 ],
@@ -116,7 +143,7 @@ class ServerManager {
     
     func visitApp(responseHandler: @escaping handler) {
         request(type: .post,
-                urn: .visit,
+                urn: URN.visit.rawValue,
                 completionHandler: responseHandler)
     }
     
