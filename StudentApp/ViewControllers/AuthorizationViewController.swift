@@ -53,7 +53,9 @@ class AuthorizationViewController: UIViewController {
             guard isSuccess,
                   let data = data else {
                 let message = "К сожалению вы не смогли авторизоваться, повторите попытку позже или введите другие данные"
-                self?.showErrorResponse(code: ErrorResponse(code: statusCode), message: message)
+                self?.showErrorResponse(code: ErrorResponse(code: statusCode),
+                                        message: message,
+                                        completion: nil)
                 return
             }
             

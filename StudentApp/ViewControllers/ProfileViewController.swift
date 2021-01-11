@@ -87,7 +87,8 @@ class ProfileViewController: UIViewController {
         }
         
         if let avatarPath = profile.photo {
-            let avatarUrl = URL(string: avatarPath)
+            let fullPath = ServerManager.shared.getPhotoPath(URN: avatarPath)
+            let avatarUrl = URL(string: fullPath)
             DispatchQueue.main.async {
                 self.avatarImageView.kf.setImage(with: avatarUrl)
             }
@@ -136,16 +137,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         ServerManager.shared.editAvatar(data: data, responseHandler: { [weak self] (isSuccess, statusCode, data) in
             
-            guard isSuccess,
-                  let data = data else { return }
+            guard isSuccess else { return }
             
-            print(data)
+            DispatchQueue.main.async {
+                self?.avatarImageView.image = image
+            }
             
         })
         
-        DispatchQueue.main.async {
-            self.avatarImageView.image = image
-        }
     }
     
 }

@@ -13,6 +13,7 @@
 		580410D525969AB6008F839F /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410D425969AB6008F839F /* ScheduleViewController.swift */; };
 		580410DA25969E16008F839F /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410D925969E16008F839F /* TasksViewController.swift */; };
 		580410E82596A658008F839F /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410E72596A658008F839F /* ServerManager.swift */; };
+		584AD05725AB45EE0030E5C0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */; };
 		58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DD3259A4F1C0060A4B4 /* Profile.swift */; };
 		58508DDC259A78110060A4B4 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DDB259A78110060A4B4 /* AccountManager.swift */; };
 		58508DEA259A7B670060A4B4 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DE9259A7B670060A4B4 /* Token.swift */; };
@@ -52,6 +53,7 @@
 		580410D425969AB6008F839F /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		580410D925969E16008F839F /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		580410E72596A658008F839F /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		58508DD3259A4F1C0060A4B4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		58508DDB259A78110060A4B4 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		58508DE9259A7B670060A4B4 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				580410C9259687E9008F839F /* ProfileViewController.swift */,
 				580410D425969AB6008F839F /* ScheduleViewController.swift */,
 				580410D925969E16008F839F /* TasksViewController.swift */,
+				584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				584AD05725AB45EE0030E5C0 /* EditProfileViewController.swift in Sources */,
 				58716A58259B90A3009D8F6D /* Schedules.swift in Sources */,
 				58508DEA259A7B670060A4B4 /* Token.swift in Sources */,
 				580410CA259687E9008F839F /* ProfileViewController.swift in Sources */,

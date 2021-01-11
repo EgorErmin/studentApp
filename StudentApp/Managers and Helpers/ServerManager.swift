@@ -15,6 +15,7 @@ class ServerManager {
     private enum URN: String {
         case authorization = "/student/login"
         case profileInfo = "/student/get_profile"
+        case editProfile = "/student/edit"
         case schedules = "/schedule/getmy"
         case editAvatar = "/student/update_photo"
         case visit
@@ -27,7 +28,8 @@ class ServerManager {
         case update
         case delete
     }
-    //IPNumber
+    
+    //IPNumber: 192.168.1.81
     private let baseUrl = "http://192.168.1.81:3000"
     
     // MARK: - Singleton
@@ -53,13 +55,12 @@ class ServerManager {
                 if var params = parameters {
                     for (key, value) in params {
                         if let dataValue = value as? Data {
-                            multipartFormData.append(dataValue, withName: key)
+                            multipartFormData.append(dataValue, withName: key, fileName: key)
                         }
                         params.removeValue(forKey: key)
                     }
                 }
             }, to: fullUri)
-            //request = AF.request(fullUri, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         default:
             return
         }
@@ -100,20 +101,20 @@ class ServerManager {
                 completionHandler: responseHandler)
     }
     
-//    func editProfile(responseHandler: @escaping handler) {
-//        request(type: .post,
-//                urn: <#T##URN#>,
-//                completionHandler: responseHandler)
-//    }
-//
+    func editProfile(newPassword: String, responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .post,
+                urn: URN.editProfile.rawValue + "?secret_token=\(token)" + "&password=\(newPassword)",
+                completionHandler: responseHandler)
+    }
+
     
     // MARK: - TODO
     func editAvatar(data: Data, responseHandler: @escaping handler) {
         guard let token = AccountManager.shared.authToken else { return }
         request(type: .postBody,
-                urn: URN.editAvatar.rawValue + "?secret_token=\(token)",
+                urn: URN.editAvatar.rawValue + "?secret_token=\(token)" + "&photo_ext=.jpeg",
                 parameters: [
-                    "photo_ext": ".jpeg",
                     "file": data
                 ],
                 completionHandler: responseHandler)
@@ -145,6 +146,10 @@ class ServerManager {
         request(type: .post,
                 urn: URN.visit.rawValue,
                 completionHandler: responseHandler)
+    }
+    
+    func getPhotoPath(URN: String) -> String {
+        return baseUrl + URN
     }
     
 }
