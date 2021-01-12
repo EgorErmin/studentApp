@@ -11,12 +11,16 @@
 		24E2B0C4B540464B6BCAE3E4 /* Pods_StudentApp_StudentAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663B9E644C5EA40E29D63A26 /* Pods_StudentApp_StudentAppUITests.framework */; };
 		580410CA259687E9008F839F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410C9259687E9008F839F /* ProfileViewController.swift */; };
 		580410D525969AB6008F839F /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410D425969AB6008F839F /* ScheduleViewController.swift */; };
-		580410DA25969E16008F839F /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410D925969E16008F839F /* TasksViewController.swift */; };
+		580410DA25969E16008F839F /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410D925969E16008F839F /* TasksListViewController.swift */; };
 		580410E82596A658008F839F /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580410E72596A658008F839F /* ServerManager.swift */; };
 		584AD05725AB45EE0030E5C0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */; };
+		584AD05F25ACF88A0030E5C0 /* TasksListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AD05E25ACF88A0030E5C0 /* TasksListTableViewCell.swift */; };
 		58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DD3259A4F1C0060A4B4 /* Profile.swift */; };
 		58508DDC259A78110060A4B4 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DDB259A78110060A4B4 /* AccountManager.swift */; };
 		58508DEA259A7B670060A4B4 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508DE9259A7B670060A4B4 /* Token.swift */; };
+		5859028C25ACF9F300A5E3B5 /* TasksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859028B25ACF9F300A5E3B5 /* TasksList.swift */; };
+		5859029125AD031100A5E3B5 /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029025AD031100A5E3B5 /* Subjects.swift */; };
+		5859029625ADCCB500A5E3B5 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029525ADCCB400A5E3B5 /* TaskViewController.swift */; };
 		58716A53259B034B009D8F6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A52259B034B009D8F6D /* Extensions.swift */; };
 		58716A58259B90A3009D8F6D /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A57259B90A3009D8F6D /* Schedules.swift */; };
 		58716A5D259BAABE009D8F6D /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */; };
@@ -51,12 +55,16 @@
 		098D8C49746A86444E6F63DF /* Pods-StudentApp-StudentAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentApp-StudentAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-StudentApp-StudentAppUITests/Pods-StudentApp-StudentAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		580410C9259687E9008F839F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		580410D425969AB6008F839F /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
-		580410D925969E16008F839F /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		580410D925969E16008F839F /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
 		580410E72596A658008F839F /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		584AD05E25ACF88A0030E5C0 /* TasksListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTableViewCell.swift; sourceTree = "<group>"; };
 		58508DD3259A4F1C0060A4B4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		58508DDB259A78110060A4B4 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		58508DE9259A7B670060A4B4 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		5859028B25ACF9F300A5E3B5 /* TasksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksList.swift; sourceTree = "<group>"; };
+		5859029025AD031100A5E3B5 /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
+		5859029525ADCCB400A5E3B5 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		58716A52259B034B009D8F6D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		58716A57259B90A3009D8F6D /* Schedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
 		58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,8 +148,9 @@
 				58EF074C2596741C00057702 /* AuthorizationViewController.swift */,
 				580410C9259687E9008F839F /* ProfileViewController.swift */,
 				580410D425969AB6008F839F /* ScheduleViewController.swift */,
-				580410D925969E16008F839F /* TasksViewController.swift */,
+				580410D925969E16008F839F /* TasksListViewController.swift */,
 				584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */,
+				5859029525ADCCB400A5E3B5 /* TaskViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -152,6 +161,8 @@
 				58508DD3259A4F1C0060A4B4 /* Profile.swift */,
 				58508DE9259A7B670060A4B4 /* Token.swift */,
 				58716A57259B90A3009D8F6D /* Schedules.swift */,
+				5859028B25ACF9F300A5E3B5 /* TasksList.swift */,
+				5859029025AD031100A5E3B5 /* Subjects.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 				58EF074E2596741C00057702 /* Main.storyboard */,
 				58EF07532596741D00057702 /* LaunchScreen.storyboard */,
 				58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */,
+				584AD05E25ACF88A0030E5C0 /* TasksListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -474,11 +486,15 @@
 				580410CA259687E9008F839F /* ProfileViewController.swift in Sources */,
 				58EF074D2596741C00057702 /* AuthorizationViewController.swift in Sources */,
 				58716A5D259BAABE009D8F6D /* SubjectTableViewCell.swift in Sources */,
-				580410DA25969E16008F839F /* TasksViewController.swift in Sources */,
+				580410DA25969E16008F839F /* TasksListViewController.swift in Sources */,
 				58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */,
+				584AD05F25ACF88A0030E5C0 /* TasksListTableViewCell.swift in Sources */,
 				58716A53259B034B009D8F6D /* Extensions.swift in Sources */,
 				58EF07492596741C00057702 /* AppDelegate.swift in Sources */,
 				580410E82596A658008F839F /* ServerManager.swift in Sources */,
+				5859029125AD031100A5E3B5 /* Subjects.swift in Sources */,
+				5859028C25ACF9F300A5E3B5 /* TasksList.swift in Sources */,
+				5859029625ADCCB500A5E3B5 /* TaskViewController.swift in Sources */,
 				580410D525969AB6008F839F /* ScheduleViewController.swift in Sources */,
 				58508DDC259A78110060A4B4 /* AccountManager.swift in Sources */,
 			);

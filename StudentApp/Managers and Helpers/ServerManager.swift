@@ -18,7 +18,9 @@ class ServerManager {
         case editProfile = "/student/edit"
         case schedules = "/schedule/getmy"
         case editAvatar = "/student/update_photo"
-        case visit
+        case tasks = "/task/get"
+        case subjects = "/subject/student"
+        case visit = "/student/visit"
     }
     
     private enum RequestType {
@@ -29,8 +31,9 @@ class ServerManager {
         case delete
     }
     
-    //IPNumber: 192.168.1.81
-    private let baseUrl = "http://192.168.1.81:3000"
+    //HomeIP: 192.168.1.81
+    //WorkIP: 192.168.1.168
+    private let baseUrl = "http://192.168.1.168:3000"
     
     // MARK: - Singleton
     static let shared: ServerManager = { return ServerManager() }()
@@ -129,12 +132,21 @@ class ServerManager {
                 ],
                 completionHandler: responseHandler)
     }
-//
-//    func fetchTasks(responseHandler: @escaping handler) {
-//        request(type: .get,
-//                urn: <#T##URN#>,
-//                completionHandler: responseHandler)
-//    }
+
+    func fetchTasks(subjectId: Int, responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .get,
+                urn: URN.tasks.rawValue + "?secret_token=\(token)" + "&subjectId=\(subjectId)",
+                completionHandler: responseHandler)
+    }
+    
+    func getSubjects(responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .get,
+                urn: URN.subjects.rawValue + "?secret_token=\(token)",
+                completionHandler: responseHandler)
+    }
+    
 //
 //    func sendTask(responseHandler: @escaping handler) {
 //        request(type: .post,
@@ -143,8 +155,9 @@ class ServerManager {
 //    }
     
     func visitApp(responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
         request(type: .post,
-                urn: URN.visit.rawValue,
+                urn: URN.visit.rawValue + "?secret_token=\(token)",
                 completionHandler: responseHandler)
     }
     

@@ -107,10 +107,6 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction private func edit(_ sender: Any) {
-        
-    }
-    
     @IBAction private func logout(_ sender: Any) {
         AccountManager.shared.deleteAuthToken()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,

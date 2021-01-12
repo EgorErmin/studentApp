@@ -39,29 +39,36 @@ class EditProfileViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func saveChange(_ sender: Any) {
-        if let password = passwordTextField.text,
-           !password.isEmpty {
+        guard let password = passwordTextField.text,
+              !password.isEmpty else {
+            self.showAllertWithMessage(message: "Вы не ввели новый пароль", completion: nil)
+            return
+        }
+        ServerManager.shared.editProfile(newPassword: password, responseHandler: { [weak self] (isSuccess, statusCode, response) in
             
-            ServerManager.shared.editProfile(newPassword: password, responseHandler: { [weak self] (isSuccess, statusCode, response) in
-                
-                guard isSuccess else {
-                    self?.showErrorResponse(code: ErrorResponse(code: statusCode),
-                                            message: "Не удалось изменить пароль",
-                                            completion: {
-                                                DispatchQueue.main.async {
-                                                    self?.dismiss(animated: true, completion: nil)
-                                                }
-                                            })
-                    return
+            guard isSuccess else {
+                self?.showErrorResponse(code: ErrorResponse(code: statusCode),
+                                        message: "Не удалось изменить пароль",
+                                        completion: {
+                                            DispatchQueue.main.async {
+                                                self?.dismiss(animated: true, completion: nil)
+                                            }
+                                        })
+                return
+            }
+            
+            self?.showAllertWithMessage(message: "Пароль успешно изменён", completion: {
+                DispatchQueue.main.async {
+                    self?.dismiss(animated: true, completion: nil)
                 }
-                
-                self?.showAllertWithMessage(message: "Пароль успешно изменён", completion: {
-                    DispatchQueue.main.async {
-                        self?.dismiss(animated: true, completion: nil)
-                    }
-                })
-                
             })
+            
+        })
+    }
+    
+    @IBAction private func back() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
