@@ -88,8 +88,18 @@ class TasksListViewController: UIViewController {
         }
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "task",
+           let taskVC = segue.destination as? TaskViewController,
+           let task = sender as? Task {
+            taskVC.setTask(task: task)
+        }
+    }
+    
 }
 
+// MARK: - UITableViewDataSource
 extension TasksListViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,9 +108,9 @@ extension TasksListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Текущие задания"
-        case 1: return "Задолженности"
-        case 2: return "Выполненные задания"
+        case 0: return "Текущие задания (Всего: \(tasks.count))"
+        case 1: return "Задолженности (Всего: \(debt.count))"
+        case 2: return "Выполненные задания (Всего: \(completedTask.count))"
         default: return ""
         }
     }
@@ -140,6 +150,7 @@ extension TasksListViewController: UITableViewDataSource {
 
 }
 
+// MARK: - UITableViewDelegate
 extension TasksListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
@@ -166,17 +177,13 @@ extension TasksListViewController: UITableViewDelegate {
             self.performSegue(withIdentifier: "task", sender: completedTask)
         default: print()
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "task",
-           let taskVC = segue.destination as? TaskViewController,
-           let task = sender as? Task {
-            taskVC.setTask(task: task)
-        }
-    }
 }
 
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
 extension TasksListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

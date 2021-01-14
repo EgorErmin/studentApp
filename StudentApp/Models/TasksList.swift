@@ -31,9 +31,31 @@ struct Task: Codable {
     let test: Test?
     let begin: String
     let deadline: String
+    let grade: Int?
+    let comment: String?
 }
 
-struct Test: Codable { }
+struct Test: Codable {
+    var testTime: Int
+    let resultRequirements: [Result]
+    let questions: [Question?]
+}
+
+// MARK: - TODO
+struct Result: Codable {
+    let mark: Int
+}
+
+struct Question: Codable {
+    let question: String
+    let answers: [Answer]
+    let correct: Int
+}
+
+// MARK: - TODO 
+struct Answer: Codable {
+    let answer: String
+}
 
 extension List: TasksSelector {
     func getDebt() -> [Task?] {

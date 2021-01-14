@@ -21,6 +21,9 @@
 		5859028C25ACF9F300A5E3B5 /* TasksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859028B25ACF9F300A5E3B5 /* TasksList.swift */; };
 		5859029125AD031100A5E3B5 /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029025AD031100A5E3B5 /* Subjects.swift */; };
 		5859029625ADCCB500A5E3B5 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029525ADCCB400A5E3B5 /* TaskViewController.swift */; };
+		5859029B25B0896F00A5E3B5 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029A25B0896E00A5E3B5 /* TestViewController.swift */; };
+		585902A025B0897F00A5E3B5 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859029F25B0897F00A5E3B5 /* TestTableViewCell.swift */; };
+		585902A525B0C27C00A5E3B5 /* GradeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585902A425B0C27C00A5E3B5 /* GradeWork.swift */; };
 		58716A53259B034B009D8F6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A52259B034B009D8F6D /* Extensions.swift */; };
 		58716A58259B90A3009D8F6D /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A57259B90A3009D8F6D /* Schedules.swift */; };
 		58716A5D259BAABE009D8F6D /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */; };
@@ -65,6 +68,9 @@
 		5859028B25ACF9F300A5E3B5 /* TasksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksList.swift; sourceTree = "<group>"; };
 		5859029025AD031100A5E3B5 /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
 		5859029525ADCCB400A5E3B5 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		5859029A25B0896E00A5E3B5 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		5859029F25B0897F00A5E3B5 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		585902A425B0C27C00A5E3B5 /* GradeWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeWork.swift; sourceTree = "<group>"; };
 		58716A52259B034B009D8F6D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		58716A57259B90A3009D8F6D /* Schedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
 		58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 				580410D925969E16008F839F /* TasksListViewController.swift */,
 				584AD05625AB45ED0030E5C0 /* EditProfileViewController.swift */,
 				5859029525ADCCB400A5E3B5 /* TaskViewController.swift */,
+				5859029A25B0896E00A5E3B5 /* TestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 				58716A57259B90A3009D8F6D /* Schedules.swift */,
 				5859028B25ACF9F300A5E3B5 /* TasksList.swift */,
 				5859029025AD031100A5E3B5 /* Subjects.swift */,
+				585902A425B0C27C00A5E3B5 /* GradeWork.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +182,7 @@
 				58EF07532596741D00057702 /* LaunchScreen.storyboard */,
 				58716A5C259BAABE009D8F6D /* SubjectTableViewCell.swift */,
 				584AD05E25ACF88A0030E5C0 /* TasksListTableViewCell.swift */,
+				5859029F25B0897F00A5E3B5 /* TestTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				585902A525B0C27C00A5E3B5 /* GradeWork.swift in Sources */,
 				584AD05725AB45EE0030E5C0 /* EditProfileViewController.swift in Sources */,
 				58716A58259B90A3009D8F6D /* Schedules.swift in Sources */,
 				58508DEA259A7B670060A4B4 /* Token.swift in Sources */,
@@ -489,6 +499,7 @@
 				580410DA25969E16008F839F /* TasksListViewController.swift in Sources */,
 				58508DD4259A4F1C0060A4B4 /* Profile.swift in Sources */,
 				584AD05F25ACF88A0030E5C0 /* TasksListTableViewCell.swift in Sources */,
+				585902A025B0897F00A5E3B5 /* TestTableViewCell.swift in Sources */,
 				58716A53259B034B009D8F6D /* Extensions.swift in Sources */,
 				58EF07492596741C00057702 /* AppDelegate.swift in Sources */,
 				580410E82596A658008F839F /* ServerManager.swift in Sources */,
@@ -496,6 +507,7 @@
 				5859028C25ACF9F300A5E3B5 /* TasksList.swift in Sources */,
 				5859029625ADCCB500A5E3B5 /* TaskViewController.swift in Sources */,
 				580410D525969AB6008F839F /* ScheduleViewController.swift in Sources */,
+				5859029B25B0896F00A5E3B5 /* TestViewController.swift in Sources */,
 				58508DDC259A78110060A4B4 /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,7 @@ class ServerManager {
         case schedules = "/schedule/getmy"
         case editAvatar = "/student/update_photo"
         case tasks = "/task/get"
+        case sendGrade = "/task_result/set_grade"
         case subjects = "/subject/student"
         case visit = "/student/visit"
     }
@@ -33,7 +34,7 @@ class ServerManager {
     
     //HomeIP: 192.168.1.81
     //WorkIP: 192.168.1.168
-    private let baseUrl = "http://192.168.1.168:3000"
+    private let baseUrl = "http://192.168.1.81:3000"
     
     // MARK: - Singleton
     static let shared: ServerManager = { return ServerManager() }()
@@ -147,12 +148,13 @@ class ServerManager {
                 completionHandler: responseHandler)
     }
     
-//
-//    func sendTask(responseHandler: @escaping handler) {
-//        request(type: .post,
-//                urn: <#T##URN#>,
-//                completionHandler: responseHandler)
-//    }
+
+    func sendGrade(taskId: Int, grade: Int, responseHandler: @escaping handler) {
+        guard let token = AccountManager.shared.authToken else { return }
+        request(type: .post,
+                urn: URN.sendGrade.rawValue + "?secret_token=\(token)" + "&taskId=\(taskId)" + "&grade=\(grade)",
+                completionHandler: responseHandler)
+    }
     
     func visitApp(responseHandler: @escaping handler) {
         guard let token = AccountManager.shared.authToken else { return }

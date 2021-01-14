@@ -46,4 +46,11 @@ extension UIViewController {
         })
     }
     
+    func showAllertDialog(message: String, completion: (() -> ())?) {
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
