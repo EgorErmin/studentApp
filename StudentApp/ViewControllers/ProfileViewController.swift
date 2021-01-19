@@ -87,8 +87,8 @@ class ProfileViewController: UIViewController {
         }
         
         if let avatarPath = profile.photo {
-            //let fullPath = ServerManager.shared.getPhotoPath(URN: avatarPath)
-            let avatarUrl = URL(string: avatarPath)
+            let fullPath = ServerManager.shared.getPhotoPath(URN: avatarPath)
+            let avatarUrl = URL(string: fullPath)
             DispatchQueue.main.async {
                 self.avatarImageView.kf.setImage(with: avatarUrl)
             }
