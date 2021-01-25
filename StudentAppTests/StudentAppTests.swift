@@ -10,12 +10,47 @@ import XCTest
 
 class StudentAppTests: XCTestCase {
     
+    var timeHelper: TimeHepler?
+    
     override func setUpWithError() throws {
-        //serverManager = ServerManager()
+        timeHelper = TimeHepler()
     }
 
     override func tearDownWithError() throws {
-        //serverManager = nil
+        timeHelper = nil
+    }
+    
+    func testTransferInSecondsWithCorrectData() throws {
+        let expectedResult = true
+        let goodValue = 360
+        
+        let workResult = timeHelper?.transferInSeconds(minutes: 6) == goodValue
+        
+        XCTAssertEqual(expectedResult, workResult)
+    }
+    
+    func testSetTimeWithCorrectData() throws {
+        let expectedResult = true
+        let label = UILabel()
+        
+        let validatorExpectation = expectation(description: "Expectation in " + #function)
+        
+        timeHelper?.setTime(timeInSec: 120, label: label)
+        var workResult = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            workResult = label.text == "2:0"
+            validatorExpectation.fulfill()
+        })
+
+        waitForExpectations(timeout: 3.0, handler: { error in
+
+            if error != nil {
+                XCTFail()
+            }
+
+            XCTAssertEqual(expectedResult, workResult)
+        })
+        
     }
     
 //    func testAsyncRequestLoginWithIncorrectData() throws {
