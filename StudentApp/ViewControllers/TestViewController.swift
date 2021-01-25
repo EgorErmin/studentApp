@@ -21,6 +21,7 @@ final class TestViewController: UIViewController {
     
     // MARK: - Properties
     private var timer: Timer? = nil
+    private var timeHelper: TimeHelperProtocol?
     
     var taskId: Int? = nil
     var test: Test? = nil
@@ -41,10 +42,12 @@ final class TestViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        timeHelper = TimeHepler()
         guard let testTime = test?.testTime,
-              let countAnswer = test?.resultRequirements.count else { return }
-        test?.testTime = transferInSeconds(minutes: testTime)
-        setTime(timeInSec: test?.testTime ?? 0)
+              let countAnswer = test?.resultRequirements.count,
+              let timeHelper = timeHelper else { return }
+        test?.testTime = timeHelper.transferInSeconds(minutes: testTime)
+        timeHelper.setTime(timeInSec: test?.testTime ?? 0, label: timeLabel)
         for _ in 0...countAnswer - 1 {
             results.append(-1)
         }
@@ -77,28 +80,17 @@ final class TestViewController: UIViewController {
     }
     
     @objc private func update() {
-        guard let testTime = test?.testTime else { return }
+        guard let testTime = test?.testTime,
+              let timeHelper = timeHelper else { return }
         if testTime == 0 {
             timer?.invalidate()
             timer = nil
             calculateGrade()
             self.timeLabel.text = "0:0"
         } else {
-            setTime(timeInSec: testTime)
+            timeHelper.setTime(timeInSec: testTime, label: timeLabel)
             test?.testTime -= 1
         }
-    }
-    
-    private func setTime(timeInSec: Int) {
-        let sec = timeInSec % 60
-        let min = timeInSec / 60
-        DispatchQueue.main.async {
-            self.timeLabel.text = "\(min):\(sec)"
-        }
-    }
-    
-    private func transferInSeconds(minutes: Int) -> Int {
-        return minutes * 60
     }
     
     private func putGrade(countGoodAnswers: Int) -> Int {
@@ -178,5 +170,24 @@ extension TestViewController: UITableViewDelegate {
         cell.setupAnswerButton()
         
         results[indexPath.section] = indexPath.row
+    }
+}
+
+protocol TimeHelperProtocol {
+    func setTime(timeInSec: Int, label: UILabel)
+    func transferInSeconds(minutes: Int) -> Int
+}
+
+class TimeHepler: TimeHelperProtocol {
+    func setTime(timeInSec: Int, label: UILabel) {
+        let sec = timeInSec % 60
+        let min = timeInSec / 60
+        DispatchQueue.main.async {
+            label.text = "\(min):\(sec)"
+        }
+    }
+    
+    func transferInSeconds(minutes: Int) -> Int {
+        return minutes * 60
     }
 }
