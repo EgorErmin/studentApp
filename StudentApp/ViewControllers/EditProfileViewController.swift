@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+final class EditProfileViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var passwordTextField: UITextField!

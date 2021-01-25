@@ -7,17 +7,17 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+final class TestViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var testTableView: UITableView!
-    @IBOutlet weak var finishButton: UIButton! {
+    @IBOutlet private weak var testTableView: UITableView!
+    @IBOutlet private weak var finishButton: UIButton! {
         didSet {
             finishButton.layer.borderWidth = 1
             finishButton.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
     
     // MARK: - Properties
     private var timer: Timer? = nil
@@ -27,15 +27,7 @@ class TestViewController: UIViewController {
     
     var results = [Int]()
     
-    private var isCompleted: Bool? {
-        guard let test = test else { return nil }
-        let countComplete = results.filter( {$0 != -1} ).count
-        if countComplete == test.questions.count {
-            return true
-        } else {
-            return false
-        }
-    }
+    private var isCompleted: Bool?
     
     private var correctGrade: [Int]? {
         guard let test = test else { return nil }

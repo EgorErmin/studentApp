@@ -5,7 +5,6 @@
 //  Created by Егор Ермин on 29.12.2020.
 //
 
-
 struct Schedules: Codable {
     let status: Bool
     let message: String

@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController {
+final class ScheduleViewController: UIViewController {
 
-    @IBOutlet weak var scheduleTableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var scheduleTableView: UITableView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     var subjects = [Day?]()
     

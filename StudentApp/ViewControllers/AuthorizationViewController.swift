@@ -7,12 +7,12 @@
 
 import UIKit
 
-class AuthorizationViewController: UIViewController {
+final class AuthorizationViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var loginTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var loginButton: UIButton! {
         didSet {
             loginButton.layer.borderWidth = 1

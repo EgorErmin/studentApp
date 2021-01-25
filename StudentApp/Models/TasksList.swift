@@ -58,35 +58,37 @@ struct Answer: Codable {
 }
 
 extension List: TasksSelector {
-    func getDebt() -> [Task?] {
+    
+    private enum TypeTask {
+        case debt
+        case real
+    }
+    
+    private func selectTask(type: TypeTask) -> [Task?] {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        let debt = self.tasks.filter({
+        let tasks = self.tasks.filter({
             if let stringDate = $0?.deadline,
                let deadlineDate = formatter.date(from: stringDate) {
-                return deadlineDate < date
+                switch type {
+                case .debt: return deadlineDate < date
+                case .real: return deadlineDate > date
+                }
             }
             return false
         })
         
-        return debt
+        return tasks
+    }
+    
+    func getDebt() -> [Task?] {
+        selectTask(type: .debt)
     }
     
     func getRealTasks() -> [Task?] {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        let realTasks = self.tasks.filter({
-            if let stringDate = $0?.deadline,
-               let deadlineDate = formatter.date(from: stringDate) {
-                return deadlineDate > date
-            }
-            return false
-        })
-        
-        return realTasks
+        selectTask(type: .real)
     }
+    
 }

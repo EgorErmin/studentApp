@@ -5,10 +5,9 @@
 //  Created by Егор Ермин on 26.12.2020.
 //
 
-import Foundation
 import Alamofire
 
-class ServerManager {
+final class ServerManager {
     
     typealias handler = (Bool, Int, Data?) -> ()
     

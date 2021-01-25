@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksListViewController: UIViewController {
+final class TasksListViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var subjectsPickerView: UIPickerView!

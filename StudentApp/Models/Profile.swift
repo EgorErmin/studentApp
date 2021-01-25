@@ -5,8 +5,6 @@
 //  Created by Егор Ермин on 28.12.2020.
 //
 
-import Foundation
-
 struct Profile: Codable {
     let firstName: String
     let lastName: String

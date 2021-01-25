@@ -7,27 +7,27 @@
 
 import UIKit
 
-class TaskViewController: UIViewController {
+final class TaskViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var beginDateLabel: UILabel!
-    @IBOutlet weak var deadlineDateLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView! {
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var beginDateLabel: UILabel!
+    @IBOutlet private weak var deadlineDateLabel: UILabel!
+    @IBOutlet private weak var photoImageView: UIImageView! {
         didSet {
             photoImageView.layer.cornerRadius = 6
         }
     }
-    @IBOutlet weak var mainInfoView: UIView! {
+    @IBOutlet private weak var mainInfoView: UIView! {
         didSet {
             mainInfoView.layer.cornerRadius = 8
             mainInfoView.layer.borderWidth = 1
             mainInfoView.layer.borderColor = UIColor.blue.cgColor
         }
     }
-    @IBOutlet weak var debtLabel: UILabel!
-    @IBOutlet weak var debtView: UIView! {
+    @IBOutlet private weak var debtLabel: UILabel!
+    @IBOutlet private weak var debtView: UIView! {
         didSet {
             debtView.layer.cornerRadius = 8
             debtView.layer.borderWidth = 1
@@ -43,9 +43,9 @@ class TaskViewController: UIViewController {
     }
     
     // For completed task
-    @IBOutlet weak var markLabel: UILabel!
-    @IBOutlet weak var teacherCommentLabel: UILabel!
-    @IBOutlet weak var completedTaskView: UIView! {
+    @IBOutlet private weak var markLabel: UILabel!
+    @IBOutlet private weak var teacherCommentLabel: UILabel!
+    @IBOutlet private weak var completedTaskView: UIView! {
         didSet {
             completedTaskView.layer.cornerRadius = 8
             completedTaskView.layer.borderWidth = 1

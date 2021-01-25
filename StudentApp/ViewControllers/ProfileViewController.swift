@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var fullNameLabel: UILabel!
@@ -25,14 +25,14 @@ class ProfileViewController: UIViewController {
             avatarImageView.layer.borderColor = UIColor.blue.cgColor
         }
     }
-    @IBOutlet weak var infoView: UIView! {
+    @IBOutlet private  weak var infoView: UIView! {
         didSet {
             infoView.layer.cornerRadius = 8
             infoView.layer.borderWidth = 1
             infoView.layer.borderColor = UIColor.blue.cgColor
         }
     }
-    @IBOutlet weak var buttonsView: UIView! {
+    @IBOutlet private weak var buttonsView: UIView! {
         didSet {
             buttonsView.layer.cornerRadius = 8
             buttonsView.layer.borderWidth = 1

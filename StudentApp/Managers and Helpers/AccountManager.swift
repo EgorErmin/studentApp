@@ -7,7 +7,7 @@
 
 import KeychainAccess
 
-class AccountManager {
+final class AccountManager {
     
     // MARK: - Singleton
     static let shared: AccountManager = { return AccountManager() }()
